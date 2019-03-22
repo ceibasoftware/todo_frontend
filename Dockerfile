@@ -1,20 +1,8 @@
-FROM node:8.9.3
+FROM nginx:alpine
 
-# set working directory
-RUN mkdir /usr/src/app
-WORKDIR /usr/src/app
+RUN rm -rf /usr/share/nginx/html/*
 
-# add `/usr/src/app/node_modules/.bin` to $PATH
-ENV PATH /usr/src/app/node_modules/.bin:$PATH
+COPY ./dist/todo-client /usr/share/nginx/html
 
-# install and cache app dependencies
-COPY package.json /usr/src/app/package.json
-RUN npm install
-
-# add app
-COPY . /usr/src/app
-
-EXPOSE 4200
-
-# start app
-CMD npm start
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
