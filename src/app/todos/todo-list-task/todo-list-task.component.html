@@ -8,7 +8,26 @@
 >
   <mat-icon aria-label="Add todo list">add</mat-icon>
 </button>
-
+<div class="container">
+  <mat-button-toggle-group
+    class="center"
+    #group="matButtonToggleGroup"
+    [value]="selectedFiliter"
+    (change)="onFilter(group.value)"
+  >
+    <mat-button-toggle value="all">
+      All
+    </mat-button-toggle>
+    <mat-button-toggle value="completed">
+      Completed
+    </mat-button-toggle>
+    <mat-button-toggle value="outstanding">
+      Outstanding
+    </mat-button-toggle>
+  </mat-button-toggle-group>
+  <br />
+  <br />
+</div>
 <main class="container" [ngSwitch]="listItems.length">
   <div *ngSwitchCase="0">
     <div class="le-loading-content" *ngIf="loadingListItems">
@@ -31,7 +50,6 @@
 
   <div *ngSwitchDefault>
     <h1>{{ list?.name }}</h1>
-
     <mat-card class="le-list-items-card">
       <mat-list>
         <ng-template ngFor let-item [ngForOf]="listItems">

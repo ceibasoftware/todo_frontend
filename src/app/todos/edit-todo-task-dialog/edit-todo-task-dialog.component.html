@@ -9,14 +9,6 @@
         required
       />
     </mat-form-field>
-    <mat-form-field class="todo-full-width">
-      <input
-        matInput
-        type="text"
-        placeholder="Task description"
-        formControlName="description"
-      />
-    </mat-form-field>
   </mat-dialog-content>
   <mat-dialog-actions>
     <button mat-button type="submit" [disabled]="editTaskForm.invalid">
